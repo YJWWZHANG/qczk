@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_bg1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_bg1"/>
+
+    <ImageView
+        android:id="@+id/iv_bg2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.667"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bg1"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/login_bg2"/>
+
+    <ImageView
+        android:id="@+id/iv_icon1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg1"
+        app:layout_constraintEnd_toEndOf="@+id/iv_bg1"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.138"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg1"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.192"
+        app:srcCompat="@drawable/login_bz"/>
+
+    <ImageView
+        android:id="@+id/iv_bg3"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg2"
+        app:srcCompat="@color/colorOranges"/>
+
+    <ImageView
+        android:id="@+id/iv_bg4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bg3"
+        app:srcCompat="@color/colorMainBg"
+        />
+
+    <ImageView
+        android:id="@+id/iv_bg5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bg4"
+        app:srcCompat="@color/colorMainBg"/>
+
+    <ImageView
+        android:id="@+id/iv_account"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_bg5"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.033"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg4"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg4"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.059"
+        app:srcCompat="@drawable/ic_accounts"/>
+
+    <ImageView
+        android:id="@+id/iv_password"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg5"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.033"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg5"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg5"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.059"
+        app:srcCompat="@drawable/ic_password"/>
+
+    <ImageView
+        android:id="@+id/iv_line1"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_account"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.055"
+        app:layout_constraintStart_toEndOf="@+id/iv_account"
+        app:layout_constraintTop_toTopOf="@+id/iv_account"
+        app:srcCompat="@color/txt_gray"/>
+
+    <ImageView
+        android:id="@+id/iv_line2"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_password"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.055"
+        app:layout_constraintStart_toEndOf="@+id/iv_password"
+        app:layout_constraintTop_toTopOf="@+id/iv_password"
+        app:srcCompat="@color/txt_gray"/>
+
+</android.support.constraint.ConstraintLayout>
