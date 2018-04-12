@@ -35,7 +35,7 @@ abstract class SimpleActivity : AppCompatActivity() {
         EventBus.getDefault().unregister(this)
     }
 
-    protected fun onViewCreated() {
+    protected open fun onViewCreated() {
 
     }
 
