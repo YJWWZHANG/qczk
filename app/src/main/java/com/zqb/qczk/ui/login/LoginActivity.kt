@@ -11,7 +11,7 @@ import com.zqb.qczk.R
 import com.zqb.qczk.app.App
 import com.zqb.qczk.app.Constants
 import com.zqb.qczk.base.BaseActivity
-import com.zqb.qczk.base.contract.LoginContract
+import com.zqb.qczk.base.contract.login.LoginContract
 import com.zqb.qczk.model.bean.LoginResuleBean
 import com.zqb.qczk.presenter.login.LoginPresenter
 import com.zqb.qczk.ui.main.MainActivity
@@ -78,7 +78,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
                 ToastUtils.showShort("微信登录")
             }
             R.id.tv_register -> {
-                ToastUtils.showShort("注册")
+                RegisterActivity.launch(this)
             }
             R.id.tv_forget -> {
                 ToastUtils.showShort("忘记密码")

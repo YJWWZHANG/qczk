@@ -4,6 +4,7 @@ import android.app.Activity
 import com.zqb.qczk.di.module.ActivityModule
 import com.zqb.qczk.di.scope.ActivityScope
 import com.zqb.qczk.ui.login.LoginActivity
+import com.zqb.qczk.ui.login.RegisterActivity
 import com.zqb.qczk.ui.main.MainActivity
 
 
@@ -17,5 +18,6 @@ interface ActivityComponent {
 
     fun inject(mainActivity: MainActivity)
     fun inject(loginActivity: LoginActivity)
+    fun inject(registerActivity: RegisterActivity)
 
 }

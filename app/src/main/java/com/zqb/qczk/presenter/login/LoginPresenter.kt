@@ -3,7 +3,7 @@ package com.zqb.qczk.presenter.login
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.zqb.qczk.base.RxPresenter
-import com.zqb.qczk.base.contract.LoginContract
+import com.zqb.qczk.base.contract.login.LoginContract
 import com.zqb.qczk.model.bean.LoginResuleBean
 import com.zqb.qczk.model.net.QczkRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
