@@ -1,3 +1,7 @@
 package com.zqb.qczk.base
 
-interface BaseView
+interface BaseView {
+
+    fun showDialog()
+    fun dimissDialog()
+}

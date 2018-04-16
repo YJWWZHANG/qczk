@@ -7,7 +7,7 @@ import com.zqb.qczk.model.bean.LoginResuleBean
 interface LoginContract {
 
     interface View : BaseView {
-        fun loginResult(loginResuleBean: LoginResuleBean)
+        fun loginResult(loginResultBean: LoginResuleBean)
     }
 
     interface Presenter : BasePresenter<View> {

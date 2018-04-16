@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:focusableInTouchMode="true"
     android:focusable="true"
     android:layout_width="match_parent"
@@ -186,9 +185,10 @@
             android:layout_marginStart="10dp"
             android:background="@null"
             android:hint="请输入您的手机号"
-            android:inputType="text"
+            android:maxLength="11"
+            android:inputType="phone"
             android:maxLines="1"
-            android:textColor="@color/txt_gray"/>
+            android:textColor="@color/material_white70"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -211,7 +211,7 @@
             android:hint="请输入验证码"
             android:inputType="text"
             android:maxLines="1"
-            android:textColor="@color/txt_gray"/>
+            android:textColor="@color/material_white70"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -233,7 +233,7 @@
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@color/txt_gray"/>
+            android:textColor="@color/material_white70"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -256,8 +256,8 @@
 
     <Button
         android:id="@+id/btn_get_verify_code"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="32dp"
@@ -266,7 +266,9 @@
         android:textColor="@color/colorOranges"
         app:layout_constraintBottom_toBottomOf="@+id/iv_bg5"
         app:layout_constraintEnd_toEndOf="@+id/iv_bg5"
-        app:layout_constraintTop_toTopOf="@+id/iv_bg5"/>
+        app:layout_constraintTop_toTopOf="@+id/iv_bg5"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.060"/>
 
     <CheckBox
         android:id="@+id/cb_agree"
@@ -276,7 +278,6 @@
         android:layout_marginTop="16dp"
         android:button="@drawable/checxbox_bg"
         android:checked="true"
-        android:textColor="@color/txt_white"
         app:layout_constraintStart_toStartOf="@+id/iv_bg6"
         app:layout_constraintTop_toBottomOf="@+id/iv_bg6"/>
 

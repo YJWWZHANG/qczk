@@ -1,5 +1,6 @@
 package com.zqb.qczk.presenter.login
 
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.zqb.qczk.base.RxPresenter
@@ -17,7 +18,7 @@ class LoginPresenter @Inject constructor(): RxPresenter<LoginContract.View>(), L
         QczkRequest.login(account, password)!!
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(Consumer {
-
+                    mView!!.showDialog()
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -25,8 +26,10 @@ class LoginPresenter @Inject constructor(): RxPresenter<LoginContract.View>(), L
                     mView!!.loginResult(loginResuleBean)
                 }, {
                     ToastUtils.showLong("请求超时，请检查网络")
+                    LogUtils.w(it.message + "请求超时，请检查网络")
+                    mView!!.dimissDialog()
                 }, {
-
+                    mView!!.dimissDialog()
                 })
     }
 

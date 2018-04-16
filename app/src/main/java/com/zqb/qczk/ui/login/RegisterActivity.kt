@@ -15,12 +15,12 @@ class RegisterActivity(override val layoutId: Int = R.layout.activity_register) 
         fun launch(context: Context) {
             context.startActivity(Intent(context, RegisterActivity::class.java))
         }
+
     }
     override fun initInject() {
         getActivityComponent().inject(this)
         mPresenter.attachView(this)
     }
-
     override fun initEventAndData() {
         tv_protocol.setOnClickListener(this)
     }
@@ -38,5 +38,11 @@ class RegisterActivity(override val layoutId: Int = R.layout.activity_register) 
 
             }
         }
+    }
+
+    override fun showDialog() {
+    }
+
+    override fun dimissDialog() {
     }
 }

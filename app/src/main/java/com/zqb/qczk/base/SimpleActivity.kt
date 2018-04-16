@@ -1,8 +1,11 @@
 package com.zqb.qczk.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
+import com.zhl.cbdialog.CBDialogBuilder
+import com.zqb.qczk.R
 import com.zqb.qczk.app.App
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
