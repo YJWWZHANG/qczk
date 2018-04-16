@@ -14,6 +14,8 @@ import com.zqb.qczk.app.App
 import com.zqb.qczk.app.Constants
 import com.zqb.qczk.base.BaseActivity
 import com.zqb.qczk.base.contract.login.LoginContract
+import com.zqb.qczk.di.qualifier.LoadingDialog
+import com.zqb.qczk.di.qualifier.LoginDialog
 import com.zqb.qczk.model.bean.LoginResuleBean
 import com.zqb.qczk.presenter.login.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
@@ -23,8 +25,8 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
 
     var mAccount : String = ""
     var mPassword : String = ""
-    @JvmField @Inject
-    var mLoadingDialog : Dialog? = null
+    @Inject @field:LoginDialog
+    lateinit var mLoadingDialog : Dialog
 
     override fun initInject() {
         getActivityComponent().inject(this)
@@ -141,12 +143,11 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
     }
 
     override fun showDialog() {
-        mLoadingDialog!!.setTitle("登录中...")
-        mLoadingDialog!!.show()
+        mLoadingDialog.show()
     }
 
     override fun dimissDialog() {
-        mLoadingDialog!!.dismiss()
+        mLoadingDialog.dismiss()
     }
 
 }
