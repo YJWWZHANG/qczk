@@ -23,6 +23,9 @@ class RegisterActivity(override val layoutId: Int = R.layout.activity_register) 
     }
     override fun initEventAndData() {
         tv_protocol.setOnClickListener(this)
+
+        setSupportActionBar(tb_title)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onBackPressed() {

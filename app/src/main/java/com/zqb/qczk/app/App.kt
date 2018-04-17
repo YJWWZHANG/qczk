@@ -9,6 +9,10 @@ import com.lzy.okgo.OkGo
 import com.lzy.okgo.cache.CacheEntity
 import com.lzy.okgo.cache.CacheMode
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor
+import com.umeng.commonsdk.UMConfigure
+import com.umeng.socialize.PlatformConfig
+import com.umeng.socialize.UMShareAPI
+import com.umeng.socialize.UMShareConfig
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 import java.util.logging.Level
@@ -18,7 +22,25 @@ import java.util.logging.Level
  */
 class App : Application() {
 
-    private var mAllActivities : MutableSet<Activity> = HashSet()
+
+    var mAllActivities : MutableSet<Activity> = HashSet()
+
+    init {
+        PlatformConfig.setQQZone("1106599959", "gkHDehPzcrLGgaLG")
+
+        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0")
+        //豆瓣RENREN平台目前只能在服务器端配置
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com")
+        PlatformConfig.setYixin("yxc0614e80c9304c11b0391514d09f13bf")
+        PlatformConfig.setTwitter("3aIN7fuF685MuZ7jtXkQxalyi", "MK6FEYG63eWcpDFgRYw4w9puJhzDl0tyuqWjZ3M7XJuuG7mMbO")
+        PlatformConfig.setAlipay("2015111700822536")
+        PlatformConfig.setLaiwang("laiwangd497e70d4", "d497e70d4c3e4efeab1381476bac4c5e")
+        PlatformConfig.setPinterest("1439206")
+        PlatformConfig.setKakao("e4f60e065048eb031e235c806b31c70f")
+        PlatformConfig.setDing("dingoalmlnohc0wggfedpk")
+        PlatformConfig.setVKontakte("5764965", "5My6SNliAaLxEm3Lyd9J")
+        PlatformConfig.setDropbox("oz8v5apet3arcdy", "h7p2pjbzkkxt02a")
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -39,6 +61,8 @@ class App : Application() {
                 .setCacheMode(CacheMode.NO_CACHE)               //全局统一缓存模式，默认不使用缓存，可以不传
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE).retryCount = 3
 
+        UMConfigure.setLogEnabled(true)
+        UMConfigure.init(this,"5ad599ce8f4a9d6aae00005f","umeng",UMConfigure.DEVICE_TYPE_PHONE,"")
     }
 
     fun addActivity(activity: Activity) {

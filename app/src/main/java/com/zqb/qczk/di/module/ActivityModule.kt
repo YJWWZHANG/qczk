@@ -16,20 +16,18 @@ class ActivityModule(private val mActivity: Activity) {
 
     @Provides
     @ActivityScope
-    fun provideActivity(): Activity {
-        return mActivity
-    }
+    fun provideActivity(): Activity = mActivity
 
     @Provides
     @LoginDialog
-    fun provideLoginDialog(): Dialog {
-        return CBDialogBuilder(mActivity, R.layout.cb_dialog_progress_avloading, 0.6f).setMessage("登录中...").create()
-    }
+    fun provideLoginDialog(): Dialog
+            = CBDialogBuilder(mActivity, CBDialogBuilder.DIALOG_STYLE_PROGRESS, 0.6f)
+            .setDialogBackground(R.color.material_black50).setMessage("登录中...").create()
 
     @Provides
     @LoadingDialog
-    fun provideLoadingDialog(): Dialog {
-        return CBDialogBuilder(mActivity, R.layout.cb_dialog_progress_avloading, 0.6f).setMessage("加载中...").create()
-    }
+    fun provideLoadingDialog(): Dialog
+            = CBDialogBuilder(mActivity, CBDialogBuilder.DIALOG_STYLE_PROGRESS, 0.6f)
+            .setDialogBackground(R.color.material_black50).setMessage("加载中...").create()
 
 }
