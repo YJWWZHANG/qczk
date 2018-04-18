@@ -27,10 +27,10 @@ class App : Application() {
 
     init {
         PlatformConfig.setQQZone("1106599959", "gkHDehPzcrLGgaLG")
+        PlatformConfig.setSinaWeibo("2205802917", "d563aa7b33258c25c19088433bc884af", "http://sns.whalecloud.com")
 
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0")
         //豆瓣RENREN平台目前只能在服务器端配置
-        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com")
         PlatformConfig.setYixin("yxc0614e80c9304c11b0391514d09f13bf")
         PlatformConfig.setTwitter("3aIN7fuF685MuZ7jtXkQxalyi", "MK6FEYG63eWcpDFgRYw4w9puJhzDl0tyuqWjZ3M7XJuuG7mMbO")
         PlatformConfig.setAlipay("2015111700822536")

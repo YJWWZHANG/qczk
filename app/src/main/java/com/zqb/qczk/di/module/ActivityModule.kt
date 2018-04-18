@@ -22,12 +22,12 @@ class ActivityModule(private val mActivity: Activity) {
     @LoginDialog
     fun provideLoginDialog(): Dialog
             = CBDialogBuilder(mActivity, CBDialogBuilder.DIALOG_STYLE_PROGRESS, 0.6f)
-            .setDialogBackground(R.color.material_black50).setMessage("登录中...").create()
+            .setDialogBackground(R.color.material_black50).setMessage("登录中...").setProgressTimeOutLimit(false).create()
 
     @Provides
     @LoadingDialog
     fun provideLoadingDialog(): Dialog
             = CBDialogBuilder(mActivity, CBDialogBuilder.DIALOG_STYLE_PROGRESS, 0.6f)
-            .setDialogBackground(R.color.material_black50).setMessage("加载中...").create()
+            .setDialogBackground(R.color.material_black50).setMessage("加载中...").setProgressTimeOutLimit(false).create()
 
 }

@@ -1,6 +1,5 @@
 package com.zqb.qczk.ui.login
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -10,7 +9,6 @@ import android.view.View
 import com.blankj.utilcode.util.*
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.umeng.commonsdk.stateless.UMSLEnvelopeBuild.mContext
 import com.umeng.socialize.UMAuthListener
 import com.umeng.socialize.UMShareAPI
 import com.umeng.socialize.bean.SHARE_MEDIA
@@ -25,13 +23,11 @@ import com.zqb.qczk.presenter.login.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
+class LoginActivity(override val layoutId: Int = R.layout.activity_login) : BaseActivity<LoginPresenter>(), LoginContract.View, View.OnClickListener {
 
-class LoginActivity(override val layoutId: Int = R.layout.activity_login) : BaseActivity<LoginPresenter>(), LoginContract.View, View.OnClickListener{
-
-    var mAccount : String = ""
-    var mPassword : String = ""
-    @Inject @field:LoginDialog
-    lateinit var mLoadingDialog : Dialog
+    @Inject
+    @field:LoginDialog
+    lateinit var mLoadingDialog: Dialog
 
     var mAuthListener: UMAuthListener = object : UMAuthListener {
         /**
@@ -44,6 +40,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
             ToastUtils.showShort(data.toString())
             LogUtils.w(data.toString())
         }
+
         /**
          * @desc 授权取消的回调
          * @param platform 平台名称
@@ -52,6 +49,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
         override fun onCancel(platform: SHARE_MEDIA?, action: Int) {
 //            ToastUtils.showShort("取消登录")
         }
+
         /**
          * @desc 授权失败的回调
          * @param platform 平台名称
@@ -61,6 +59,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
         override fun onError(platform: SHARE_MEDIA?, action: Int, t: Throwable?) {
 //            ToastUtils.showShort("登录失败")
         }
+
         /**
          * @desc 授权开始的回调
          * @param platform 平台名称
@@ -76,7 +75,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
     }
 
     companion object {
-        fun launch(context : Context) {
+        fun launch(context: Context) {
             context.startActivity(Intent(context, LoginActivity::class.java))
         }
     }
@@ -88,9 +87,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
         tv_register.setOnClickListener(this)
         tv_forget.setOnClickListener(this)
 
-//        mLoadingDialog = mCBDialogBuilder.setMessage("登录").create()
-
-        et_account.addTextChangedListener(object : TextWatcher{
+        et_account.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -107,13 +104,16 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
             }
         })
 
-        mAccount = SPUtils.getInstance(Constants.SP_CONFIG).getString(Constants.ACCOUNT)
-        mPassword = SPUtils.getInstance(Constants.SP_CONFIG).getString(Constants.PASSWORD)
-        if (!StringUtils.isSpace(mAccount)) {
-            et_account.setText(mAccount)
+        val account = SPUtils.getInstance(Constants.SP_CONFIG).getString(Constants.ACCOUNT)
+        val password = SPUtils.getInstance(Constants.SP_CONFIG).getString(Constants.PASSWORD)
+
+        if (!StringUtils.isSpace(account)) {
+            et_account.setText(account)
         }
-        if (!StringUtils.isSpace(mPassword)) {
-            et_password.setText(mPassword)
+        if (!StringUtils.isSpace(password)) {
+            et_password.setText(String(EncryptUtils.decryptBase64AES(password.toByteArray(charset("UTF-8")),
+                    Constants.PW_KEY.toByteArray(charset("UTF-8")), Constants.PW_MODE,
+                    Constants.PW_IV.toByteArray(charset("UTF-8")))))
         }
 
     }
@@ -128,19 +128,17 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id) {
+        when (v!!.id) {
             R.id.btn_login -> {
-                mAccount = et_account.text.toString()
-                mPassword = et_password.text.toString()
-                if (StringUtils.isSpace(mAccount)){
+                if (StringUtils.isSpace(et_account.text.toString())) {
                     ToastUtils.showShort("手机号不能为空")
                     return
                 }
-                if (StringUtils.isSpace(mPassword)){
+                if (StringUtils.isSpace(et_password.text.toString())) {
                     ToastUtils.showShort("密码不能为空")
                     return
                 }
-                if (!RegexUtils.isMobileExact(mAccount)) {
+                if (!RegexUtils.isMobileExact(et_account.text.toString())) {
                     YoYo.with(Techniques.Shake)
                             .duration(700)
                             .playOn(et_account)
@@ -151,7 +149,7 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
                     ToastUtils.showShort("网络未连接，请检查网络")
                     return
                 }
-                mPresenter.login(mAccount, mPassword)
+                mPresenter.login(et_account.text.toString(), et_password.text.toString())
             }
             R.id.btn_qq_login -> {
                 UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, mAuthListener)
@@ -173,10 +171,12 @@ class LoginActivity(override val layoutId: Int = R.layout.activity_login) : Base
     }
 
     override fun loginResult(loginResultBean: LoginResuleBean) {
-        when(loginResultBean.status) {
+        when (loginResultBean.status) {
             "success" -> {
-                SPUtils.getInstance(Constants.SP_CONFIG).put(Constants.ACCOUNT, mAccount)
-                SPUtils.getInstance(Constants.SP_CONFIG).put(Constants.PASSWORD, mPassword)
+                SPUtils.getInstance(Constants.SP_CONFIG).put(Constants.ACCOUNT, et_account.text.toString())
+                SPUtils.getInstance(Constants.SP_CONFIG).put(Constants.PASSWORD, String(EncryptUtils.encryptAES2Base64(et_password.text.toString().toByteArray(charset("UTF-8")),
+                        Constants.PW_KEY.toByteArray(charset("UTF-8")), Constants.PW_MODE,
+                        Constants.PW_IV.toByteArray(charset("UTF-8")))))
                 ToastUtils.showShort(loginResultBean.message)
 //                MainActivity.launch(this)
 //                finish()
