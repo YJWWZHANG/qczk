@@ -1,0 +1,14 @@
+ext {
+    def organization = "com.zqb"
+    android = [
+            organization : "${organization}",
+            applicationId : "${organization}.qczk",
+            compileSdkVersion : 27,
+            buildToolsVersion : "27.0.3",
+            minSdkVersion : 21,
+            targetSdkVersion : 27,
+            versionCode : 100,
+            versionName : "1.0.0",
+            resConfigs : "zh"
+    ]
+}

@@ -3,13 +3,19 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+Properties properties = new Properties()
+File localPropertiesFile = project.rootProject.file("local.properties");
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.newDataInputStream())
+}
+
 android {
     signingConfigs {
         config {
-            keyAlias 'z1'
-            keyPassword '734057028'
-            storeFile file('C:/Users/Administrator/Downloads/zqb.jks')
-            storePassword '734057028'
+            storeFile file(properties.getProperty("storeFile"))
+            storePassword properties.getProperty("storePassword")
+            keyAlias properties.getProperty("keyAlias")
+            keyPassword properties.getProperty("keyPassword")
         }
     }
     compileSdkVersion 27
@@ -20,7 +26,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [qqappid: "你的qq appid"]
+        manifestPlaceholders = [qqappid: "你的qq appid"]      //友盟
     }
     buildTypes {
         release {
